@@ -1,4 +1,3 @@
-// const employeeGrid = document.querySelectorAll('.employeeGrid');
 
 $.getJSON(
   'https://randomuser.me/api/?nat=us&results=12',
@@ -6,20 +5,34 @@ $.getJSON(
   function (data){
     let employeeList = "<ul>";
     $.each(data.results, function(index, employee){
-      employeeList += `<li class="employee"><img src="${employee.picture.medium}" class="employee-photo">
-        <h2>${employee.name.first} ${employee.name.last}</h2>
+      let mm = employee.dob.date.substring(5,7);
+      let dd = employee.dob.date.substring(8,10);
+      let yyyy = employee.dob.date.substring(0,4);
+      employeeList += `<li class="employee"><img src="${employee.picture.large}">
+        <div class="employeeData"><h2 style="text-transform: capitalize;">${employee.name.first} ${employee.name.last}</h2>
         <p>${employee.email}</p>
-        <p>${employee.location.city}</p></li>`;
+        <p style="text-transform: capitalize;">${employee.location.city}</p></div>
+        <div class="employeeExtraData" style="display:none"><p>${employee.phone}</p>
+        <p style="text-transform: capitalize;">${employee.location.street} ${employee.location.city}, ${employee.location.state} ${employee.location.postcode}</p>
+        <p>Birthday: ${mm}/${dd}/${yyyy}</p>
+        </div></li>`;
     });
     employeeList += '</ul>';
     $('.employeeGrid').html(employeeList);
 
-    const modal = document.getElementById('myModal');
-    const x = document.getElementsByClassName("close")[0];
+    // Modal pop-up with full employee data
+    const modal = document.querySelector('.modal');
+    const x = document.querySelector(".close");
     const li = document.querySelectorAll('.employee');
+    const employeeFullData = document.querySelector('.modal-content-text');
     $.each(li, function(i){
       li[i].addEventListener('click', (e)=>{
+        let employeeHTML = $(this).clone();
+        let next = $(employeeHTML).children('.employeeExtraData').children('.next')[0];
         modal.style.display = "block";
+        $(employeeFullData).html(employeeHTML);
+        $(employeeHTML).removeClass('employee').addClass('employeeFull');
+        $(employeeHTML).children('div').show();
       });
 
     });
@@ -28,7 +41,3 @@ $.getJSON(
     }
   }
 );
-
-
-// make blank modal
-// populate modal with content

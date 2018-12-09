@@ -8,43 +8,103 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Fjalla+One', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   list-style: none;
   margin: 0;
   padding: 0;
 }
+header h1{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 1.5em;
+}
+.body{
+  padding: 2em;
+}
+.employee img{
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  padding: 1em;
+}
+.employeeFull img{
+  border-radius: 50%;
+  width: 128px;
+  height: 128px;
+  padding: 0;
+}
 
 .employee{
-  display: inline-block;
-  border: 2px solid grey;
+  display: flex;
+  border: 1.5px solid lightgrey;
+  border-radius: 10px;
+  width: 400px;
+  margin: 1em;
+  transition: transform .3s ease;
+
+}
+.employee:hover{
+  border: 1.5px solid darkgrey;
+  box-shadow: 5px 5px 8px lightgrey;
+  transform: translate(-3px, -3px);
+
+}
+.employeeData{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.employeeData h2{
+  font-size: 1.1em;
+  margin: .4em 0;
+}
+.employeeData p{
+  font-size: .8em;
+  margin: .4em 0;
+  color: grey;
+}
+.employeeFull{
+  list-style: none;
+  text-align: center;
+}
+.employeeFull p{
+  font-size: 1em;
+  color: grey;
+}
+.employeeExtraData{
+  border-top: 1px solid lightgrey;
 }
 
-/* The Modal (background) */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
-/* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  margin: 15% auto;
+  padding: 1em 2em;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  border-radius: 10px;
+  width: 50%;
+  max-width: 500px;
+  min-width: 300px;
 }
 
-/* The Close Button */
 .close {
   color: #aaa;
   float: right;
@@ -57,4 +117,10 @@ ul{
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
 }
