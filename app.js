@@ -8,6 +8,7 @@ $.getJSON(
       let mm = employee.dob.date.substring(5,7);
       let dd = employee.dob.date.substring(8,10);
       let yyyy = employee.dob.date.substring(0,4);
+      // Create and generate grid of random employees and data but only display minimal employee data
       employeeList += `<li class="employee"><img src="${employee.picture.large}">
         <div class="employeeData"><h2 style="text-transform: capitalize;">${employee.name.first} ${employee.name.last}</h2>
         <p>${employee.email}</p>
@@ -28,7 +29,6 @@ $.getJSON(
     $.each(li, function(i){
       li[i].addEventListener('click', (e)=>{
         let employeeHTML = $(this).clone();
-        let next = $(employeeHTML).children('.employeeExtraData').children('.next')[0];
         modal.style.display = "block";
         $(employeeFullData).html(employeeHTML);
         $(employeeHTML).removeClass('employee').addClass('employeeFull');
@@ -36,8 +36,8 @@ $.getJSON(
       });
 
     });
-    x.onclick = function() {
+    x.addEventListener('click', (e)=>{
       modal.style.display = "none";
-    }
+    });
   }
 );
